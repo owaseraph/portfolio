@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import './App.css';
 import CodeTerminal from './components/codeTerminal';
 import Projects from './components/Projects';
+import Footer from './components/Footer';
+import Skills from './components/Skills';
 
 function App() {
   const container = {
@@ -79,8 +81,13 @@ function App() {
       </div>
 
       <div ref={projectsRef}>
-        {showProjects && <Projects />}
+        {showProjects && (
+          <>
+          <Skills />
+          <Projects />
+          </>)}
       </div>
+      <Footer />
     </div>
   );
 }

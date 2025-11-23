@@ -24,7 +24,7 @@ int main() {
   Engineer seraph;
 
   seraph.focus = "FullStack Development";
-  raresh.skills = {"C++", "React", "PCB Design"};
+  seraph.skills = {"C++", "React", "Javascript", "Typescript", "PCB Design"};
 
   // Initializing Project...
   if (seraph.isReady()) {

@@ -19,11 +19,11 @@ export const projectData = [
   },
   {
     id: 3,
-    title: "EMBEDDED_CONTROLLER",
-    category: "Hardware/C++",
-    description: "Microcontroller logic for sensor fusion and real-time signal processing.",
-    tech: ["C++", "Arduino", "I2C", "Sensors"],
+    title: "DJANGO_PIRATES",
+    category: "Full Stack Web App",
+    description: "A navigational tool featuring risk calculation algorithms and a dynamic 'Parchment' UI. Built with Django MVT architecture.",
+    tech: ["Python", "Django", "SQLite", "CSS Animations"],
     link: "#",
-    repo: "#"
+    repo: "https://github.com/owaseraph/Django_Coderun_2025_Easy"
   }
 ];
