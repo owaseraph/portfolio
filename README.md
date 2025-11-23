@@ -103,7 +103,7 @@ This system is configured for **GitHub Pages**.
 ```bash
 npm run build
 ```
-
+# 2. **Deploy to gh-pages branch**
 ```bash
 npm run deploy
 ```
