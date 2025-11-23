@@ -1,6 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import { HashRouter } from 'react-router-dom';
+import React from 'react';
 
+
+const root = ReactDOM.createRoot(document.getElementById(root));
+root.render(
+  <HashRouter>
+    <App />
+  </HashRouter>
+)
 function App() {
   return (
     <div className="App">
