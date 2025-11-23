@@ -1,10 +1,13 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 import { motion } from 'framer-motion';
 import './App.css';
 import CodeTerminal from './components/codeTerminal';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 import Skills from './components/Skills';
+import SystemTimer from './components/SystemTimer';
+import Contact from './components/Contact';
+
 
 function App() {
   const container = {
@@ -13,22 +16,60 @@ function App() {
   };
 
   const [showProjects, setShowProjects] = useState(false);
+  const contactRef = useRef(null);
   const projectsRef = useRef(null);
+  const skillsRef = useRef(null);
+  const [activeSection, setActiveSection] = useState('skills');
 
   const item = {
     hidden: { opacity: 0, x: -30 },
     show: { opacity: 1, x: 0 }
   };
 
+  useEffect(() => {
+    if (!showProjects) return;
+
+    let timer;
+
+    if (activeSection === 'skills') {
+      
+      skillsRef.current?.scrollIntoView({ behavior: 'smooth' });
+      
+      
+      timer = setTimeout(() => {
+        setActiveSection('projects');
+      }, 7500);
+
+    } else if (activeSection === 'projects') {
+     
+      projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
+      
+    
+      timer = setTimeout(() => {
+        setActiveSection('skills');
+      }, 7500);
+    }
+    return () => clearTimeout(timer);
+
+  }, [activeSection, showProjects]); 
+
+
   const handleInitiate = (e) => {
     e.preventDefault(); 
     setShowProjects(true); 
-    
-    
-    setTimeout(() => {
-      projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    setActiveSection('skills');
   };
+
+  const handleContact = (e) => {
+  e.preventDefault();
+  setShowProjects(true);
+  
+  setActiveSection('contact'); 
+
+  setTimeout(() => {
+    contactRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, 100);
+};
 
   return (
     <div className="app-container">
@@ -65,7 +106,7 @@ function App() {
 
           <motion.div variants={item} className="button-group">
             <button onClick={handleInitiate} className="btn btn-primary">INITIATE_PROJECTS</button>
-            <a href="mailto:tcaciuc.rares.stefan@gmail.com" className="btn btn-secondary">CONTACT_PROTOCOL</a>
+            <button onClick={handleContact} className="btn btn-secondary">CONTACT_PROTOCOL</button>
           </motion.div>
         </motion.div>
         <motion.div 
@@ -80,13 +121,35 @@ function App() {
 
       </div>
 
-      <div ref={projectsRef}>
+      <div ref={skillsRef}>
         {showProjects && (
           <>
-          <Skills />
-          <Projects />
-          </>)}
+            {activeSection === 'skills' && (
+              <div className="skills-timer">
+                 <SystemTimer label="SCANNING_DRIVERS (NEXT: PROJECTS)" />
+              </div>
+            )}
+            
+            <Skills />
+            
+           
+            <div ref={projectsRef} style={{paddingTop: '50px'}}>
+              
+             
+              {activeSection === 'projects' && (
+                 <SystemTimer label="ANALYZING_MODULES (NEXT: SKILLS)" />
+              )}
+              
+              <Projects />
+            </div>
+            <div ref={contactRef}>
+                <Contact />
+            </div>
+          </>
+        )}
       </div>
+
+
       <Footer />
     </div>
   );
