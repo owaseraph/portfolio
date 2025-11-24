@@ -20,50 +20,64 @@ function App() {
   const projectsRef = useRef(null);
   const skillsRef = useRef(null);
   const [activeSection, setActiveSection] = useState('skills');
+  const [isLoopActive, setisLoopActive] = useState(false);
 
   const item = {
     hidden: { opacity: 0, x: -30 },
     show: { opacity: 1, x: 0 }
   };
 
+  useEffect(() =>{
+    const stopLoop = () =>{
+      if(isLoopActive){
+        setisLoopActive(false);
+      }
+    };
+    window.addEventListener('wheel', stopLoop);
+    window.addEventListener('touchmove', stopLoop);
+    window.addEventListener('keydown', stopLoop);
+
+
+    return () => {
+      window.removeEventListener('wheel', stopLoop);
+      window.removeEventListener('touchmove', stopLoop);
+      window.removeEventListener('keydown', stopLoop);
+    };
+  }, [isLoopActive]);
+
   useEffect(() => {
-    if (!showProjects) return;
+    if (!showProjects || !isLoopActive) return;
 
     let timer;
 
     if (activeSection === 'skills') {
-      
       skillsRef.current?.scrollIntoView({ behavior: 'smooth' });
-      
-      
       timer = setTimeout(() => {
-        setActiveSection('projects');
+        if (isLoopActive) setActiveSection('projects');
       }, 7500);
-
-    } else if (activeSection === 'projects') {
-     
+    }
+    else if (activeSection === 'projects') {
       projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
-      
-    
       timer = setTimeout(() => {
-        setActiveSection('skills');
+        if (isLoopActive) setActiveSection('skills');
       }, 7500);
     }
     return () => clearTimeout(timer);
 
-  }, [activeSection, showProjects]); 
+  }, [activeSection, showProjects, isLoopActive]); 
 
 
   const handleInitiate = (e) => {
     e.preventDefault(); 
     setShowProjects(true); 
+    setisLoopActive(true);
     setActiveSection('skills');
   };
 
   const handleContact = (e) => {
   e.preventDefault();
   setShowProjects(true);
-  
+  setisLoopActive(false);
   setActiveSection('contact'); 
 
   setTimeout(() => {
@@ -124,7 +138,7 @@ function App() {
       <div ref={skillsRef}>
         {showProjects && (
           <>
-            {activeSection === 'skills' && (
+            {isLoopActive && activeSection === 'skills' && (
               <div className="skills-timer">
                  <SystemTimer label="SCANNING_DRIVERS (NEXT: PROJECTS)" />
               </div>

@@ -15,20 +15,29 @@ const CodeTerminal = () => {
       <div className="terminal-body">
         <TypeAnimation
           sequence={[
-            `#include <iostream>
+             `#include <iostream>
+#include <vector>
 #include "Engineer.h"
 
 using namespace std;
 
+class Rares : public Engineer {
+  public:
+    void build() {
+      hardware.connect();   
+      server.deploy();
+    }
+};
+
 int main() {
-  Engineer seraph;
+ 
+  Rares seraph;
 
-  seraph.focus = "FullStack Development";
-  seraph.skills = {"C++", "React", "Javascript", "Typescript", "PCB Design"};
+  seraph.role = "FullStack & Embedded Engineer";
+  seraph.stack = {"C++", "React", "Node.js", "PCB Design"};
 
-  // Initializing Project...
   if (seraph.isReady()) {
-    seraph.buildFuture();
+    seraph.build();
   }
 
   return 0;
