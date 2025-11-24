@@ -150,7 +150,7 @@ function App() {
             <div ref={projectsRef} style={{paddingTop: '50px'}}>
               
              
-              {activeSection === 'projects' && (
+              {isLoopActive && activeSection === 'projects' && (
                  <SystemTimer label="ANALYZING_MODULES (NEXT: SKILLS)" />
               )}
               
