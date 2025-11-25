@@ -7,6 +7,10 @@ import Footer from './components/Footer';
 import Skills from './components/Skills';
 import SystemTimer from './components/SystemTimer';
 import Contact from './components/Contact';
+import CircuitBackground from './components/CircuitBackground';
+import CustomCursor from './components/CustomCursor';
+import BootSequence from './components/BootSequence';
+import { AnimatePresence } from 'framer-motion';
 
 
 function App() {
@@ -21,6 +25,7 @@ function App() {
   const skillsRef = useRef(null);
   const [activeSection, setActiveSection] = useState('skills');
   const [isLoopActive, setisLoopActive] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const item = {
     hidden: { opacity: 0, x: -30 },
@@ -87,6 +92,15 @@ function App() {
 
   return (
     <div className="app-container">
+      <AnimatePresence>
+        {loading && (
+          <BootSequence onComplete={() => setLoading(false)} />
+        )}
+      </AnimatePresence>
+      {!loading && (
+      <>
+      <CircuitBackground/>
+      <CustomCursor />
       <div className="scanline"></div>
 
       <div className="hero-split-layout">
@@ -165,6 +179,8 @@ function App() {
 
 
       <Footer />
+      </>
+      )};
     </div>
   );
 }

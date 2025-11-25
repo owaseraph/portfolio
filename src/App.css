@@ -8,11 +8,6 @@
   width: 100%;
   min-height: 100vh;
   position: relative;
-  background-color: #050505;
-  background-image: 
-    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
   overflow-x: hidden;
 }
 
@@ -586,6 +581,98 @@ input:focus, textarea:focus {
   margin-top: 1rem;
   width: 100%;
   text-align: center;
+}
+
+/* BOOTING SEQUENCE */
+.boot-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fira Code', monospace;
+  color: #e0e0e0;
+}
+
+
+.boot-container {
+  width: 500px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cursor-placeholder {
+  margin-left: 85px; 
+}
+
+.boot-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.boot-divider {
+  border: 0;
+  border-bottom: 1px dashed #333;
+  margin: 5px 0;
+}
+
+.boot-log {
+  min-height: 200px; 
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.log-line {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.status-ok {
+  color: #39ff14; 
+  font-weight: bold;
+}
+
+.log-text {
+  color: #ccc;
+}
+
+
+.boot-footer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.boot-progress-track {
+  flex-grow: 1;
+  height: 10px;
+  border: 1px solid #333;
+  padding: 1px;
+}
+
+.boot-progress-fill {
+  height: 100%;
+  background-color: #39ff14;
+  transition: width 0.1s linear; 
+}
+
+.boot-percentage {
+  width: 40px;
+  text-align: right;
+  color: #39ff14;
 }
 
 /* MEDIA QUERIES */
