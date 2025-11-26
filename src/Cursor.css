@@ -47,6 +47,6 @@
         cursor: auto !important;
     }
   .cursor-dot, .cursor-ring {
-    display: none;
+    display: none !important;
   }
 }

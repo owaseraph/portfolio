@@ -4,9 +4,16 @@ import '../Cursor.css';
 const CustomCursor = () =>{
     const [position, setPosition] = useState({x: 0, y: 0});
     const [isHovering, setIsHovering] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
 
 
 useEffect(() =>{
+
+    if(window.innerWidth<=768){
+      return;
+    }
+
+    setIsVisible(true);
     const moveCursor = e =>{
         setPosition({x: e.clientX, y: e.clientY});
     }
@@ -29,8 +36,9 @@ useEffect(() =>{
         el.removeEventListener('mouseleave', handleMouseLeave);
       });
     };
+    
 }, []);
-
+if (!isVisible) return null;
 return (
     <>
       {/* The Dot */}

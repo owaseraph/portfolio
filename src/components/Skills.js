@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { skillsData } from '../data/skills';
-import '../App.css';
+import React from "react";
+import { motion } from "framer-motion";
+import { skillsData } from "../data/skills";
+import "../App.css";
 
 const Skills = () => {
   const containerVariants = {
@@ -9,14 +9,14 @@ const Skills = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
@@ -34,14 +34,12 @@ const Skills = () => {
 
         <div className="skills-grid">
           {skillsData.map((category, index) => (
-            <motion.div 
-              key={index} 
+            <motion.div
+              key={index}
               className="skill-category-card"
               variants={itemVariants}
             >
-              <h3 className="category-title">
-                {category.category}
-              </h3>
+              <h3 className="category-title">{category.category}</h3>
               <div className="skill-tags">
                 {category.items.map((skill, i) => (
                   <span key={i} className="skill-chip">
