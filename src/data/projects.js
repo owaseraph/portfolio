@@ -19,11 +19,11 @@ export const projectData = [
   },
   {
     id: 3,
-    title: "DJANGO_PIRATES",
-    category: "Full Stack Web App",
-    description: "A navigational tool featuring risk calculation algorithms and a dynamic 'Parchment' UI. Built with Django MVT architecture.",
-    tech: ["Python", "Django", "SQLite", "CSS Animations"],
+    title: "DIGITAL_CIRCUIT_SIMULATOR",
+    category: "C++",
+    description: "A high-performance logic circuit simulator built in C++ from scratch. This tool allows users to place logic gates, wire them together, and simulate digital circuits in real-time.",
+    tech: ["C++", "SDL3", "CMake", "ImGui"],
     link: "#",
-    repo: "https://github.com/owaseraph/Django_Coderun_2025_Easy"
+    repo: "https://github.com/owaseraph/Digital-Logic-Simulator"
   }
 ];
