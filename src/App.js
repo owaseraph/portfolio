@@ -1,188 +1,121 @@
-import React, { useState, useRef, useEffect} from 'react';
+import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import './App.css';
 import CodeTerminal from './components/codeTerminal';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
 import Skills from './components/Skills';
-import SystemTimer from './components/SystemTimer';
 import Contact from './components/Contact';
-import CircuitBackground from './components/CircuitBackground';
-import CustomCursor from './components/CustomCursor';
-import BootSequence from './components/BootSequence';
-import { AnimatePresence } from 'framer-motion';
+import About from './components/About';
+import { ThemeProvider, ThemeContext } from './ThemeContext';
 
-
-function App() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.3 } }
-  };
-
-  const [showProjects, setShowProjects] = useState(false);
-  const contactRef = useRef(null);
-  const projectsRef = useRef(null);
-  const skillsRef = useRef(null);
-  const [activeSection, setActiveSection] = useState('skills');
-  const [isLoopActive, setisLoopActive] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  const item = {
-    hidden: { opacity: 0, x: -30 },
-    show: { opacity: 1, x: 0 }
-  };
-
-  useEffect(() =>{
-    const stopLoop = () =>{
-      if(isLoopActive){
-        setisLoopActive(false);
-      }
-    };
-    window.addEventListener('wheel', stopLoop);
-    window.addEventListener('touchmove', stopLoop);
-    window.addEventListener('keydown', stopLoop);
-
-
-    return () => {
-      window.removeEventListener('wheel', stopLoop);
-      window.removeEventListener('touchmove', stopLoop);
-      window.removeEventListener('keydown', stopLoop);
-    };
-  }, [isLoopActive]);
-
-  useEffect(() => {
-    if (!showProjects || !isLoopActive) return;
-
-    let timer;
-
-    if (activeSection === 'skills') {
-      skillsRef.current?.scrollIntoView({ behavior: 'smooth' });
-      timer = setTimeout(() => {
-        if (isLoopActive) setActiveSection('projects');
-      }, 7500);
-    }
-    else if (activeSection === 'projects') {
-      projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
-      timer = setTimeout(() => {
-        if (isLoopActive) setActiveSection('skills');
-      }, 7500);
-    }
-    return () => clearTimeout(timer);
-
-  }, [activeSection, showProjects, isLoopActive]); 
-
-
-  const handleInitiate = (e) => {
-    e.preventDefault(); 
-    setShowProjects(true); 
-    setisLoopActive(true);
-    setActiveSection('skills');
-  };
-
-  const handleContact = (e) => {
-  e.preventDefault();
-  setShowProjects(true);
-  setisLoopActive(false);
-  setActiveSection('contact'); 
-
-  setTimeout(() => {
-    contactRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, 100);
+/* ── Smooth-scroll helper ─────────────────── */
+const scrollTo = (id) => {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 };
+
+/* ── Stagger container ────────────────────── */
+const container = {
+  hidden: { opacity: 0 },
+  show:   { opacity: 1, transition: { staggerChildren: 0.12 } },
+};
+const item = {
+  hidden: { opacity: 0, y: 20 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+};
+
+/* ─────────────────────────────────────────── */
+function AppContent() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
     <div className="app-container">
-      <AnimatePresence>
-        {loading && (
-          <BootSequence onComplete={() => setLoading(false)} />
-        )}
-      </AnimatePresence>
-      {!loading && (
-      <>
-      <CircuitBackground/>
-      <CustomCursor />
-      <div className="scanline"></div>
+      {/* ── HEADER ── */}
+      <header className="site-header">
+        <div className="header-inner">
+          <a href="#hero" className="logo" onClick={e => { e.preventDefault(); scrollTo('hero'); }}>
+            Rares<span>.</span>
+          </a>
 
-      <div className="hero-split-layout">
-        
-        <motion.div 
-          className="hero-left"
+          <nav>
+            <ul className="nav-links">
+              {['about','skills','projects','contact'].map(s => (
+                <li key={s}>
+                  <a href={`#${s}`} onClick={e => { e.preventDefault(); scrollTo(s); }}>
+                    {s.charAt(0).toUpperCase() + s.slice(1)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <button className="theme-btn" onClick={toggleTheme} aria-label="Toggle theme">
+            {theme === 'dark' ? '☀ Light' : '☾ Dark'}
+          </button>
+        </div>
+      </header>
+
+      {/* ── HERO ── */}
+      <section id="hero" className="hero-section">
+        <motion.div
           variants={container}
           initial="hidden"
           animate="show"
         >
-          <motion.p variants={item} className="system-text">
-            &gt; SYSTEM_ONLINE... <span className="cursor-blink">_</span>
+          <motion.p variants={item} className="hero-eyebrow">
+            Available for work
           </motion.p>
 
           <motion.h1 variants={item} className="hero-title">
-            SERAPH<span className="accent-cyan">.DEV</span>
-            <span className="glitch-layer">SERAPH.DEV</span>
-            <span className="glitch-layer-2">SERAPH.DEV</span>
+            Rares,<br />
+            <em>Software</em><br />
+            Developer
           </motion.h1>
 
-          <motion.h2 variants={item} className="hero-subtitle">
-            Electronics & Telecommunications Engineer
-          </motion.h2>
+          <motion.p variants={item} className="hero-role">
+            Electronics & Telecommunications Engineer — Cluj-Napoca, RO
+          </motion.p>
 
-          <motion.div variants={item} className="hero-description pcb-trace">
-            <p>
-              Bridging the gap between <strong>Hardware</strong> and <strong>Software</strong>. 
-              Specialized in Embedded Systems, Signal Processing, and Full-Stack Development.
-            </p>
-          </motion.div>
+          <motion.p variants={item} className="hero-bio">
+            I build things at the intersection of <strong>hardware and software</strong> — 
+            from embedded systems and digital circuits to full-stack web applications. 
+            I care about writing clean code that works reliably, whether it's running on 
+            a microcontroller or in a browser.
+          </motion.p>
 
-          <motion.div variants={item} className="button-group">
-            <button onClick={handleInitiate} className="btn btn-primary">INITIATE_PROJECTS</button>
-            <button onClick={handleContact} className="btn btn-secondary">CONTACT_PROTOCOL</button>
+          <motion.div variants={item} className="hero-actions">
+            <button className="btn btn-primary" onClick={() => scrollTo('projects')}>
+              View Projects
+            </button>
+            <button className="btn btn-outline" onClick={() => scrollTo('contact')}>
+              Get in Touch
+            </button>
           </motion.div>
         </motion.div>
-        <motion.div 
-          className="hero-right"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.7, ease: 'easeOut' }}
         >
           <CodeTerminal />
         </motion.div>
+      </section>
 
-
-      </div>
-
-      <div ref={skillsRef}>
-        {showProjects && (
-          <>
-            {isLoopActive && activeSection === 'skills' && (
-              <div className="skills-timer">
-                 <SystemTimer label="SCANNING_DRIVERS (NEXT: PROJECTS)" />
-              </div>
-            )}
-            
-            <Skills />
-            
-           
-            <div ref={projectsRef} style={{paddingTop: '50px'}}>
-              
-             
-              {isLoopActive && activeSection === 'projects' && (
-                 <SystemTimer label="ANALYZING_MODULES (NEXT: SKILLS)" />
-              )}
-              
-              <Projects />
-            </div>
-            <div ref={contactRef}>
-                <Contact />
-            </div>
-          </>
-        )}
-      </div>
-
-
+      {/* ── REST OF PAGE ── */}
+      <About />
+      <Skills />
+      <Projects />
+      <Contact />
       <Footer />
-      </>
-      )};
     </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
+}

@@ -1,79 +1,141 @@
 import React from 'react';
-import { useForm, ValidationError } from '@formspree/react'; 
+import { useForm, ValidationError } from '@formspree/react';
+import { motion } from 'framer-motion';
 import '../App.css';
 
 const Contact = () => {
-  
-  const [state, handleSubmit] = useForm("xzzwlwoz");
+  const [state, handleSubmit] = useForm('xzzwlwoz');
 
   if (state.succeeded) {
     return (
       <section id="contact" className="contact-section">
-         <h2 className="section-title">
-            &gt; UPLINK_ESTABLISHED <span className="cursor-blink">_</span>
-         </h2>
-         <div className="contact-container" style={{textAlign: 'center', padding: '50px'}}>
-            <div className="terminal-header-strip">
-              <span className="status-light green"></span> STATUS: COMPLETE
-            </div>
-            <h3 style={{color: '#39ff14', fontFamily: 'Fira Code', marginTop: '20px'}}>
-              &gt; TRANSMISSION_RECEIVED.
-            </h3>
-            <p style={{color: '#888', fontFamily: 'Inter', marginTop: '10px'}}>
-              We will initiate a response protocol shortly.
-            </p>
-            <button 
-              onClick={() => window.location.reload()} 
-              className="btn btn-secondary" 
-              style={{marginTop: '20px'}}
-            >
-              RESET_TERMINAL
-            </button>
-         </div>
+        <div className="section-wrapper">
+          <div className="form-success">
+            <div className="form-success-icon">✓</div>
+            <h3>Message received</h3>
+            <p>Thanks for reaching out — I'll get back to you shortly.</p>
+          </div>
+        </div>
       </section>
     );
   }
 
- 
   return (
     <section id="contact" className="contact-section">
-      <h2 className="section-title">
-        &gt; ESTABLISH_UPLINK <span className="cursor-blink">_</span>
-      </h2>
+      <div className="section-wrapper">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="section-label">Contact</p>
+          <h2 className="section-heading">
+            Let's work <em>together</em>
+          </h2>
+        </motion.div>
 
-      <div className="contact-container">
-        <div className="terminal-header-strip">
-          <span className="status-light green"></span> TRANSMISSION_MODE: ENCRYPTED
+        <div className="section-divider" />
+
+        <div className="contact-layout">
+          <motion.div
+            className="contact-intro"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <p>
+              I'm currently open to new opportunities — freelance, internships, or 
+              full-time roles. If you have a project in mind or just want to chat about 
+              embedded systems or web development, I'd love to hear from you.
+            </p>
+
+            <div className="contact-links">
+              <a
+                href="https://github.com/owaseraph"
+                target="_blank"
+                rel="noreferrer"
+                className="contact-link-row"
+              >
+                <span className="contact-link-label">GitHub</span>
+                owaseraph
+              </a>
+              <a
+                href="mailto:tcaciuc.rares.stefan@gmail.com"
+                className="contact-link-row"
+              >
+                <span className="contact-link-label">Email</span>
+                tcaciuc.rares.stefan@gmail.com
+              </a>
+              <a
+                href="https://linkedin.com/in/rares-stefan-tcaciuc-545061336"
+                target="_blank"
+                rel="noreferrer"
+                className="contact-link-row"
+              >
+                <span className="contact-link-label">LinkedIn</span>
+                Tcaciuc Rares-Stefan
+              </a>
+            </div>
+          </motion.div>
+
+          <motion.form
+            className="contact-form"
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
+            <div className="form-group">
+              <label className="form-label" htmlFor="name">Name</label>
+              <input
+                className="form-input"
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Your name"
+                required
+              />
+              <ValidationError prefix="Name" field="name" errors={state.errors} />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label" htmlFor="email">Email</label>
+              <input
+                className="form-input"
+                id="email"
+                name="email"
+                type="email"
+                placeholder="your@email.com"
+                required
+              />
+              <ValidationError prefix="Email" field="email" errors={state.errors} />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label" htmlFor="message">Message</label>
+              <textarea
+                className="form-textarea"
+                id="message"
+                name="message"
+                placeholder="Tell me about your project or opportunity..."
+                required
+              />
+              <ValidationError prefix="Message" field="message" errors={state.errors} />
+            </div>
+
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={state.submitting}
+              style={{ alignSelf: 'flex-start' }}
+            >
+              {state.submitting ? 'Sending…' : 'Send Message'}
+            </button>
+          </motion.form>
         </div>
-
-        <p className="contact-prompt">
-          INCOMING_CONNECTION: Ready to receive project inquiries or collaboration requests.
-        </p>
-
-        <form onSubmit={handleSubmit} className="terminal-form">
-          
-          <div className="form-group">
-            <label htmlFor="name">&gt; SENDER_IDENTITY:</label>
-            <input type="text" id="name" name="name" placeholder="Enter identification..." required />
-            <ValidationError prefix="Name" field="name" errors={state.errors} />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="email">&gt; RETURN_ADDRESS (Email):</label>
-            <input type="email" id="email" name="email" placeholder="Enter email..." required />
-            <ValidationError prefix="Email" field="email" errors={state.errors} />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="message">&gt; DATA_PACKET (Message):</label>
-            <textarea id="message" name="message" rows="5" placeholder="Type message stream here..." required></textarea>
-            <ValidationError prefix="Message" field="message" errors={state.errors} />
-          </div>
-
-          <button type="submit" className="btn btn-primary submit-btn" disabled={state.submitting}>
-            {state.submitting ? "[ TRANSMITTING... ]" : "[ TRANSMIT_DATA ]"}
-          </button>
-        </form>
       </div>
     </section>
   );

@@ -1,26 +1,19 @@
 import React from 'react';
+import '../App.css';
 
-const Footer = () => {
-  return (
-    <footer style={{
-      borderTop: '1px solid #333',
-      padding: '20px',
-      textAlign: 'center',
-      color: '#555',
-      fontFamily: 'Fira Code, monospace',
-      fontSize: '0.8rem',
-      marginTop: '50px',
-      background: '#020202'
-    }}>
-      <p>
-        SYSTEM_STATUS: <span style={{color: '#39ff14'}}>NOMINAL</span> | 
-        LOCATION: <span style={{color: '#00f3ff'}}>CLUJ-NAPOCA, RO</span>
-      </p>
-      <p style={{marginTop: '10px'}}>
-        &copy; {new Date().getFullYear()} SERAPH.DEV // BUILT_WITH_REACT
-      </p>
-    </footer>
-  );
-};
+const Footer = () => (
+  <footer className="site-footer">
+    <div className="footer-inner">
+      <span className="footer-copy">
+        © {new Date().getFullYear()} Rares — Cluj-Napoca, RO
+      </span>
+      <div className="footer-links">
+        <a href="https://github.com/owaseraph" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="mailto:tcaciuc.rares.stefan@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+);
 
 export default Footer;

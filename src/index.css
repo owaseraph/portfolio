@@ -1,44 +1,115 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=DM+Mono:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap');
+
+/* ============================================
+   DESIGN TOKENS
+   ============================================ */
+
+:root {
+  --font-sans: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --font-display: 'Fraunces', serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  --transition: 0.2s ease;
+  --transition-slow: 0.4s ease;
+}
+
+[data-theme="light"] {
+  --bg:           #F7F6F3;
+  --bg-subtle:    #EFEDE8;
+  --surface:      #FFFFFF;
+  --surface-alt:  #F2F0EB;
+  --border:       #E2DED6;
+  --border-strong:#C8C4BA;
+
+  --text-primary:   #1A1916;
+  --text-secondary: #6B6860;
+  --text-muted:     #A09D97;
+
+  --accent:       #2D6A4F;   /* forest green */
+  --accent-soft:  #D8EBE1;
+  --accent-2:     #C77B3E;   /* warm amber */
+  --accent-2-soft:#F5E6D3;
+}
+
+[data-theme="dark"] {
+  --bg:           #141412;
+  --bg-subtle:    #1C1B18;
+  --surface:      #1F1E1B;
+  --surface-alt:  #272521;
+  --border:       #2E2C28;
+  --border-strong:#3D3B36;
+
+  --text-primary:   #F0EDE6;
+  --text-secondary: #9B9891;
+  --text-muted:     #5C5A55;
+
+  --accent:       #4A9470;   /* muted sage */
+  --accent-soft:  #1A2E24;
+  --accent-2:     #D4894A;   /* warm amber */
+  --accent-2-soft:#2A1F12;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg:           #141412;
+    --bg-subtle:    #1C1B18;
+    --surface:      #1F1E1B;
+    --surface-alt:  #272521;
+    --border:       #2E2C28;
+    --border-strong:#3D3B36;
+    --text-primary:   #F0EDE6;
+    --text-secondary: #9B9891;
+    --text-muted:     #5C5A55;
+    --accent:       #4A9470;
+    --accent-soft:  #1A2E24;
+    --accent-2:     #D4894A;
+    --accent-2-soft:#2A1F12;
+  }
+}
+
+/* ============================================
+   RESET & BASE
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html {
   scroll-behavior: smooth;
-}
-:root {
-  --bg-color: #050505;
-  --text-color: #e0e0e0;
-  --accent-cyan: #00f3ff;
-  --accent-green: #39ff14;
-  --font-mono: 'Fira Code', monospace;
-  --font-sans: 'Inter', sans-serif;
+  font-size: 16px;
 }
 
 body {
-  margin: 0;
-  background-color: var(--bg-color);
-  color: var(--text-color);
+  background-color: var(--bg);
+  color: var(--text-primary);
   font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Scrollbar Styling */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #111; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+/* ============================================
+   SCROLLBAR
+   ============================================ */
 
-/* Utility Classes */
-.text-cyan { color: var(--accent-cyan); }
-.text-green { color: var(--accent-green); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ============================================
+   UTILITY
+   ============================================ */
+
+.accent  { color: var(--accent); }
+.accent2 { color: var(--accent-2); }
 .font-mono { font-family: var(--font-mono); }
-
-/* A glowing grid background effect */
-.grid-bg {
-  background-image: 
-    linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
-  background-size: 30px 30px;
-  height: 100vh;
-  width: 100%;
-  position: absolute;
-  z-index: -1;
-}
+.font-display { font-family: var(--font-display); }
