@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tcaciuc Rares-Stefan — Portfolio of a telecommunications student.">
+<meta name="theme-color" content="#15140f">
+<title>Tcaciuc Rares-Stefan — Portfolio</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,600;9..144,680&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<nav>
+  <a href="#top" class="magnetic" data-magnetic data-hover>Tcaciuc Rares-Stefan</a>
+  <div class="navlinks">
+    <a href="#work" class="magnetic" data-magnetic data-hover>Work</a>
+    <a href="#timeline" class="magnetic" data-magnetic data-hover>Story</a>
+    <a href="#contact" class="magnetic" data-magnetic data-hover>Contact</a>
+    <a href="assets/Tcaciuc Rares-Stefan.pdf" download>CV</a>
+  </div>
+</nav>
+
+<header class="hero" id="top" data-theme="paper">
+  <svg class="grid-bg" id="gridBg" width="100%" height="100%"></svg>
+  <div class="hero-media" id="heroMedia" aria-hidden="true">
+    <video autoplay muted loop playsinline poster="assets/images/project3.png">
+      <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-eyebrow" id="scrambleText">TELECOMMUNICATIONS STUDENT · LEARNING, BUILDING, CONNECTING</div>
+  <h1 id="heroTitle" aria-label="Tcaciuc Rares-Stefan">
+    <span class="hero-title-layer" aria-hidden="true"><span class="hero-line">Tcaciuc</span><span class="hero-line">Rares-Stefan</span></span>
+  </h1>
+  <div class="hero-sub" id="heroSub">Curious about networks, software, and the details that make technology work</div>
+  <div class="hero-status" id="heroStatus" aria-label="Current focus">
+    <span><b>STATUS</b> BUILDING</span>
+    <span><b>FOCUS</b> CONNECTED SYSTEMS</span>
+    <span><b>BASE</b> ROMANIA</span>
+  </div>
+</header>
+
+<div class="marquee">
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-group">
+      <span>C</span><span>C++</span><span>PYTHON</span><span>JAVA</span>
+      <span>JAVASCRIPT</span><span>TYPESCRIPT</span><span>LINUX</span><span>NETWORKING</span>
+    </div>
+    <div class="marquee-group" aria-hidden="true">
+      <span>C</span><span>C++</span><span>PYTHON</span><span>JAVA</span>
+      <span>JAVASCRIPT</span><span>TYPESCRIPT</span><span>LINUX</span><span>NETWORKING</span>
+    </div>
+  </div>
+</div>
+
+<section class="project-reel" id="work" data-theme="paper">
+  <div class="reel-intro wrap">
+    <div class="meta"><span class="num">01</span><span>SELECTED WORK</span></div>
+    <h2><span class="reveal-inner">Systems built across software, security, and hardware.</span></h2>
+    <p class="lead">From compression tools and cybersecurity to wireless communication and digital logic, these projects reflect how I learn by building.</p>
+    <div class="carousel-hint" id="carouselHint">SCROLL TO EXPLORE</div>
+  </div>
+  <div class="pin-section" id="pinSection" tabindex="0" aria-label="Project reel">
+    <div class="pin-inner">
+      <div class="track" id="track"></div>
+    </div>
+    <div class="pin-status" aria-live="polite">
+      <span class="pin-current-window"><span id="pinCurrent">01</span></span><span aria-hidden="true"> / </span><span id="pinTotal">04</span>
+      <span class="pin-status-label">PROJECT</span>
+    </div>
+    <div class="pin-progress"><div class="pin-progress-fill"></div></div>
+  </div>
+</section>
+
+<section id="timeline" data-theme="paper">
+  <div class="wrap">
+    <div class="meta"><span class="num">02</span><span>THE STORY, SO FAR</span></div>
+    <h2 style="margin-bottom:50px;"><span class="reveal-inner">Every beat, in order.</span></h2>
+    <div class="timeline">
+      <div class="spine"></div>
+      <div class="spine-progress" id="spineProgress"></div>
+      <div class="beat" data-beat><div class="beat-dot"></div><div class="meta" style="margin-bottom:10px;"><span>2020 · COMPUTER SCIENCE</span></div><h2 style="font-size:1.5rem; overflow:visible;">Started exploring computer science at 15.</h2><p class="lead">High school introduced me to programming and sparked my interest in understanding how software, systems, and technology work. This was the beginning of my journey into computer science, where I started learning programming languages and building small projects to develop my skills.</p></div>
+      <div class="beat" data-beat><div class="beat-dot"></div><div class="meta" style="margin-bottom:10px;"><span>2022 · INFORMATICS OLYMPIAD</span></div><h2 style="font-size:1.5rem; overflow:visible;">Placed fourth at the regional stage of my first Informatics Olympiad.</h2><p class="lead">Preparing for the competition strengthened my problem-solving skills and taught me how to approach unfamiliar programming problems under pressure.</p></div>
+      <div class="beat" data-beat><div class="beat-dot"></div><div class="meta" style="margin-bottom:10px;"><span>2023 · REVERSE ENGINEERING</span></div><h2 style="font-size:1.5rem; overflow:visible;">Built an autonomous rhythm-game player through reverse engineering.</h2><p class="lead">The project challenged me to understand timing, input handling, and real-time game behavior at a deeper level using C++.</p></div>
+      <div class="beat" data-beat><div class="beat-dot"></div><div class="meta" style="margin-bottom:10px;"><span>2024 · UNIVERSITY</span></div><h2 style="font-size:1.5rem; overflow:visible;">Started studying telecommunications and building larger systems.</h2><p class="lead">University expanded my interests from programming into networking, communication systems, hardware, and the software that connects them.</p></div>
+      <div class="beat" data-beat><div class="beat-dot"></div><div class="meta" style="margin-bottom:10px;"><span>2026 · HACKATHONS</span></div><h2 style="font-size:1.5rem; overflow:visible;">Turned technical knowledge into results with a team.</h2><p class="lead">I participated in two hackathons, winning one with my team and placing second in the cybersecurity track at another.</p></div>
+    </div>
+  </div>
+</section>
+
+<section data-theme="dim">
+  <div class="wrap section-inner">
+    <div class="meta"><span class="num">03</span><span>IN NUMBERS</span></div>
+    <h2><span class="reveal-inner">Proof, not adjectives.</span></h2>
+    <div class="mark-wrap"><svg class="mark" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" stroke-width="1"></circle><path id="markPath" d="M50 6 A44 44 0 1 1 49.99 6" stroke-dasharray="1 1000"></path></svg></div>
+    <div class="stat-block"><div class="stat"><span class="n" data-count="6">0</span><span class="l">programming languages explored</span></div><div class="stat"><span class="n" data-count="1">0</span><span class="l">hackathon won</span></div><div class="stat"><span class="n" data-count="4">0</span><span class="l">technical projects</span></div></div>
+  </div>
+</section>
+
+<section class="closing-statement" data-theme="dim">
+  <div class="wrap">
+    <div class="meta"><span class="num">04</span><span>CURRENT DIRECTION</span></div>
+    <h2><span class="reveal-inner">Building from the signal up.</span></h2>
+  </div>
+</section>
+
+<footer id="contact" data-theme="dim">
+  <div>
+    <div class="meta"><span class="num">05</span><span>SAY HELLO</span></div>
+    <h2 style="font-size:clamp(2.5rem, 7vw, 6rem); overflow:visible;">Let's talk.</h2>
+  </div>
+  <div class="links">
+    <a href="mailto:tcaciuc.rares.stefan@gmail.com" class="magnetic" data-magnetic data-hover>Email</a>
+    <a href="https://github.com/owaseraph" class="magnetic" data-magnetic data-hover>GitHub</a>
+    <a href="https://www.linkedin.com/in/rares-stefan-tcaciuc-545061336/" class="magnetic" data-magnetic data-hover>LinkedIn</a>
+    <a href="assets/Tcaciuc Rares-Stefan.pdf" download>Download CV</a>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script type="module" src="js/main.js"></script>
+
+</body>
+</html>
